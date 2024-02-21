@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
-use App\Http\Requests\StoreTaskRequest;
-use App\Http\Requests\UpdateTaskRequest;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
+
 class TaskController extends Controller
 {
     /**
@@ -26,7 +27,7 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTaskRequest $request)
+    public function store(Request $request)
     {
         Task::create($request->all());
         return redirect()
@@ -46,19 +47,14 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        return view('edit', ['tasks' => $task]);
+        return view('tasks.edit', ['task' => $task]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTaskRequest $request, Task $task)
+    public function update(Request $request, Task $task)
     {
-        $validated = $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'status' => 'required'
-        ]);
         $task->name = $request-> name;
         $task->description = $request-> description;
         $task->status = $request-> status; 
