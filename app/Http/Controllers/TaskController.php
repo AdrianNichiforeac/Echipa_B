@@ -22,7 +22,6 @@ class TaskController extends Controller
     public function create()
     {
         return view('tasks/create');
-
     }
 
     /**
@@ -30,10 +29,9 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        task::create($request->all());
+        Task::create($request->all());
         return redirect()
-            ->route('tasks.index')
-            ->with('succes', 'Mehanicul a fost adaugat cu succes');
+            ->route('tasks.index');
     }
 
     /**
@@ -57,10 +55,12 @@ class TaskController extends Controller
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
-        $validated = $request->validate([
-            'name' => 'required|max:255',
-        ]);
-        $task->name = $request-> name;
+        $this->validate($request, [
+            'name'=>'required',
+            'description'=> 'required',
+            'status'=>'required',
+        ]
+    );
 
         $task->save();
         return redirect() -> route('tasks.index'); 
