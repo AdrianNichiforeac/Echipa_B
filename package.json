@@ -12,7 +12,6 @@
     },
     "dependencies": {
         "bootstrap": "^5.3.3",
-        "sacss": "^1.1.0",
         "sass": "^1.71.1"
     }
 }
