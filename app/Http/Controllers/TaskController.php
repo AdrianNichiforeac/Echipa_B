@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
-
 class TaskController extends Controller
 {
     /**
@@ -13,7 +12,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return view('tasks.index', ['tasks' => task::all()]);  
+        return view('tasks.index', ['tasks' => Task::all()]);  
     }
 
     /**
@@ -47,7 +46,7 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        return view('edit', ['tasks' => $task]);
     }
 
     /**
@@ -55,16 +54,18 @@ class TaskController extends Controller
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
-        $this->validate($request, [
-            'name'=>'required',
-            'description'=> 'required',
-            'status'=>'required',
-        ]
-    );
-
+        $validated = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'status' => 'required'
+        ]);
+        $task->name = $request-> name;
+        $task->description = $request-> description;
+        $task->status = $request-> status; 
         $task->save();
         return redirect() -> route('tasks.index'); 
     }
+
 
     /**
      * Remove the specified resource from storage.

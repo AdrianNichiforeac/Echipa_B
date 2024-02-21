@@ -8,7 +8,7 @@
 </div>
 <div class="row">
     <div class="col-md-10">
-        <a href="{{ route('task.create') }}" class="btn btn-sm btn-dark mb-3">Add</a>
+        <a href="{{ route('tasks.create') }}" class="btn btn-sm btn-dark mb-3">Add</a>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -22,14 +22,14 @@
             <tbody>
                 @forelse($tasks as $task)
                 <tr>
-                    <td>{{ $loop->iterate }}</td>
+                    <td>{{ $loop->iteration }}</td>
                     <td>{{ $task->name }}</td>
                     <td>{{ $task->description }}</td>
                     <td>{{ $task->status }}</td>
-                    <td>{{ $task->Timestamp }}</td>
+                    <td>{{ $task->created_at }}</td>
                     <td>
-                        <a href="" class="bt btn-sm btn-warning">Edit</a>
-                        <button class="btn btn-sm btn-outline-danger delete-contact" data-id="{{$task->id}}">
+                        <a href="" class="btn btn-sm btn-warning">Edit</a>
+                        <button class="btn btn-sm btn-danger delete-contact" data-id="{{$task->id}}">
                             Delete
                         </button>
                     </td>

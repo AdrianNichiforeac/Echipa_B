@@ -4,21 +4,21 @@
 
 @section('content')
 
-<form>
+<form action="{{route('tasks.store')}}" method="post">
+    @csrf
     <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
-        <input type="text" class="form-control" id="name">
+        <label for="" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name">
     </div>
     <div class="mb-3">
         <label for="description" class="form-label">Description</label>
-        <input type="text" class="form-control" id="description">
+        <input type="text" class="form-control" id="description" name="description">
     </div>
     <div class="mb-3">
-        <select class="form-select" aria-label="Default select example">
-            <option selected>Status</option>
-            <option value="1">In Progress</option>
-            <option value="2">Complete</option>
-            <option value="3">Failed</option>
+        <select class="form-select" name="status" id="status">
+            <option value="In progres">In Progress</option>
+            <option value="Finisat">Complete</option>
+            <option value="Esuat">Failed</option>
         </select>
     </div>
 
