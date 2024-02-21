@@ -17,6 +17,7 @@
                     <th>Description</th>
                     <th>Status</th>
                     <th>Timestamp</th>
+                    <th>Option</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,10 +29,14 @@
                     <td>{{ $task->status }}</td>
                     <td>{{ $task->created_at }}</td>
                     <td>
-                        <a href="" class="btn btn-sm btn-warning">Edit</a>
-                        <button class="btn btn-sm btn-danger delete-contact" data-id="{{$task->id}}">
-                            Delete
-                        </button>
+                        <div class="row">
+                            <a href="{{route('tasks.edit' , ['task'=>$task -> id])}}" class="btn btn-sm btn-warning col-4 ms-3">Edit</a>
+                            <form class="col-4 " action="{{ route('tasks.destroy', ['task' => $task]) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" {{ route('tasks.destroy', ['task' => $task]) }}>Delete</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @empty
