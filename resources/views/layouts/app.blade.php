@@ -19,7 +19,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="{{ route('mechanics.index') }}">List</a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('tasks.index') }}">List</a>
                 </div>
             </div>
         </div>
